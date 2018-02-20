@@ -1,7 +1,7 @@
 {
-  "name": "cexio-api-node",
-  "version": "1.2.0",
-  "description": "CEX.IO Trading API for Node.js",
+  "name": "@macdog/cexio-api-node",
+  "version": "1.2.0-macdog",
+  "description": "CEX.IO Trading API for Node.js.  Macdog's fork to enable custom client order IDs",
   "main": "index.js",
   "directories": {
     "example": "examples"

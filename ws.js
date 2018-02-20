@@ -224,7 +224,7 @@ CexioWS.prototype.openOrders = function (pair = 'BTC-USD') {
  * @param  {decimal} [price]     Order price
  * @see https://cex.io/websocket-api#order-placement
  */
-CexioWS.prototype.placeOrder = function (action, pair = 'BTC-USD', amount, price) {
+CexioWS.prototype.placeOrder = function (action, pair, amount, price, oid) {
   var order
   if (action === 'buy') {
     order = {
@@ -238,7 +238,7 @@ CexioWS.prototype.placeOrder = function (action, pair = 'BTC-USD', amount, price
         price: price,
         type: 'buy'
       },
-      oid: Date.now() + '_buy'
+      oid: oid || Date.now() + '_buy'
     }
   } else {
     order = {
@@ -252,7 +252,7 @@ CexioWS.prototype.placeOrder = function (action, pair = 'BTC-USD', amount, price
         price: price,
         type: 'sell'
       },
-      oid: Date.now() + '_sell'
+      oid: oid ||Date.now() + '_sell'
     }
   }
   this.send(order)
