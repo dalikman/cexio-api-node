@@ -224,7 +224,7 @@ CexioWS.prototype.openOrders = function (pair = 'BTC-USD') {
  * @param  {decimal} [price]     Order price
  * @see https://cex.io/websocket-api#order-placement
  */
-CexioWS.prototype.placeOrder = function (action, pair, amount, price, oid) {
+CexioWS.prototype.placeOrder = function (action, pair, amount, price, oid) { //macdog: added oid
   var order
   if (action === 'buy') {
     order = {
@@ -238,7 +238,7 @@ CexioWS.prototype.placeOrder = function (action, pair, amount, price, oid) {
         price: price,
         type: 'buy'
       },
-      oid: oid || Date.now() + '_buy'
+      oid: oid || Date.now() + '_buy' //macdog: added oid
     }
   } else {
     order = {
@@ -252,7 +252,7 @@ CexioWS.prototype.placeOrder = function (action, pair, amount, price, oid) {
         price: price,
         type: 'sell'
       },
-      oid: oid ||Date.now() + '_sell'
+      oid: oid ||Date.now() + '_sell'  //macdog: added oid
     }
   }
   this.send(order)
@@ -267,7 +267,7 @@ CexioWS.prototype.placeOrder = function (action, pair, amount, price, oid) {
  * @param  {decimal}   [price]     Order price
  * @see https://cex.io/websocket-api#cancel-replace
  */
-CexioWS.prototype.replaceOrder = function (orderId, action, pair = 'BTC-USD', amount, price) {
+CexioWS.prototype.replaceOrder = function (orderId, action, pair = 'BTC-USD', amount, price, oid) {  //macdog: added oid
   var order
   if (action === 'buy') {
     order = {
@@ -282,7 +282,7 @@ CexioWS.prototype.replaceOrder = function (orderId, action, pair = 'BTC-USD', am
         price: price,
         type: 'buy'
       },
-      oid: Date.now() + '_replace_buy'
+      oid: oid || Date.now() + '_replace_buy'  //macdog: added oid
     }
   } else {
     order = {
@@ -297,7 +297,7 @@ CexioWS.prototype.replaceOrder = function (orderId, action, pair = 'BTC-USD', am
         price: price,
         type: 'sell'
       },
-      oid: Date.now() + '_replace_sell'
+      oid: oid || Date.now() + '_replace_sell' //macdog: added oid
     }
   }
   this.send(order)
